@@ -63,18 +63,35 @@ apt-get -y install python3.8
 apt-get -y install -y python3-pip
 
 # ---------------------------------------
-#          ZSH setup
+#          packaages setup
 # ---------------------------------------
-apt-get -y install git zsh
-su vagrant -c "git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh-folder"
-su vagrant -c "~/.oh-my-zsh-folder/tools/install.sh -y"
-su vagrant -c "sed -i 's/ZSH_THEME=\"robbyrussell\"/ZSH_THEME=\"clean\"/g' ~/.zshrc"
-chsh -s /bin/zsh vagrant
+
+apt-add-repository ppa:fish-shell/release-3
+apt-get -y install git fish neofetch fonts-powerline tree
 
 # ---------------------------------------
-#          Config Setting
+#          fish setup
 # ---------------------------------------
+
+snap install startship 
+chsh -s /usr/bin/fish 
+
+# ---------------------------------------
+#          git config
+# ---------------------------------------
+
 git config --global core.autocrlf True
+git config --global credential.helper store
+
+# ---------------------------------------
+#          micro editor setup
+# ---------------------------------------
+
+curl https://getmic.ro | bash
+
+cp micro /usr/local/bin
+
+chmod +x /usr/local/bin/micro
 
 # ---------------------------------------
 #          Dcoker-Compose  setup
